@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from rest_framework.urlpatterns import format_suffix_patterns
 
 
 # Сериализаторы определяют представление API.
@@ -26,21 +27,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['url', 'username', 'email', 'is_staff']
 
 
-
-
 # ViewSets определяют поведение представления.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
-
 # Маршрутизаторы предоставляют простой способ автоматического определения URL-адреса conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-
-
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
