@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from django.conf.urls.static import static
+from django.conf import settings
+
 from rest_framework.urlpatterns import format_suffix_patterns
 
 
@@ -41,5 +44,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
-    path('', include('test_api.urls'))
-]
+    path('', include('test_api.urls')),
+    path('', include('api_file.urls')),
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

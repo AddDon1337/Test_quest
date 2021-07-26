@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'test_api.apps.TestApiConfig',
+    'api_file.apps.ApiFileConfig',
 ]
 
 REST_FRAMEWORK = {
